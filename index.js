@@ -34,10 +34,17 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    
+    const reviews = client.db("gameReviewDB").collection('reviews');
 
     app.post('/reviews', async(req, res) => {
-      const reviews = client.db("gameReviewDB").collection('reviews');
       const result = await reviews.insertOne(req.body);
+      res.send(result);
+    })
+
+    app.get('/reviews', async(req, res) => {
+      const cursor = reviews.find();
+      const result = await cursor.toArray();
       res.send(result);
     })
 
