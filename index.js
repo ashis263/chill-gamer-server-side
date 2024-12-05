@@ -10,11 +10,11 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    res.send('Server Running');
+  res.send('Server Running');
 });
 
 app.listen(port, () => {
-    console.log("Server running on port: " + port);
+  console.log("Server running on port: " + port);
 })
 
 
@@ -34,26 +34,37 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    
-    const reviews = client.db("gameReviewDB").collection('reviews');
 
-    app.post('/reviews', async(req, res) => {
+    const reviews = client.db("gameReviewDB").collection('reviews');
+    const users = client.db("gameReviewDB").collection('users');
+
+    app.post('/reviews', async (req, res) => {
       const result = await reviews.insertOne(req.body);
       res.send(result);
     })
 
-    app.get('/reviews', async(req, res) => {
+    app.get('/reviews', async (req, res) => {
       const cursor = reviews.find();
       const result = await cursor.toArray();
       res.send(result);
     })
 
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-  }
+    app.put('/users', async (req, res) => {
+      const filter = { email: req.body.email };
+      const updatedDoc = {
+        $set: req.body
+      }
+      const options = { upsert: true};
+      const result = await users.updateOne(filter, updatedDoc, options);
+      res.send(result);
+    })
+
+  // Send a ping to confirm a successful connection
+  await client.db("admin").command({ ping: 1 });
+  console.log("Pinged your deployment. You successfully connected to MongoDB!");
+} finally {
+  // Ensures that the client will close when you finish/error
+  // await client.close();
+}
 }
 run().catch(console.dir);
