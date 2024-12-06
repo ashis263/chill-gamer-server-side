@@ -37,7 +37,7 @@ async function run() {
 
     const reviews = client.db("gameReviewDB").collection('reviews');
     const users = client.db("gameReviewDB").collection('users');
-    const wishlist = client.db("gameReviewDB").collection('wishlist');
+    const watchlist = client.db("gameReviewDB").collection('watchlist');
 
     app.post('/reviews', async (req, res) => {
       const result = await reviews.insertOne(req.body);
@@ -67,13 +67,13 @@ async function run() {
       res.send(result);
     })
 
-    app.put('/wishlist', async(req, res) => {
+    app.put('/watchlist', async(req, res) => {
       const filter = { findingKey: req.body.findingKey };
       const updatedDoc = {
         $set: req.body
       }
       const options = { upsert: true};
-      const result = await wishlist.updateOne(filter, updatedDoc, options);
+      const result = await watchlist.updateOne(filter, updatedDoc, options);
       res.send(result);
     })
 
@@ -84,7 +84,14 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
-
+    
+    app.get('/watchlist/:email', async(req, res) => {
+      const email = req.params.email;
+      const query = { watchlisterEmail: email};
+      const cursor = watchlist.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    })
   // Send a ping to confirm a successful connection
   await client.db("admin").command({ ping: 1 });
   console.log("Pinged your deployment. You successfully connected to MongoDB!");
