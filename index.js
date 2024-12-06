@@ -37,6 +37,7 @@ async function run() {
 
     const reviews = client.db("gameReviewDB").collection('reviews');
     const users = client.db("gameReviewDB").collection('users');
+    const wishlist = client.db("gameReviewDB").collection('wishlist');
 
     app.post('/reviews', async (req, res) => {
       const result = await reviews.insertOne(req.body);
@@ -63,6 +64,16 @@ async function run() {
       }
       const options = { upsert: true};
       const result = await users.updateOne(filter, updatedDoc, options);
+      res.send(result);
+    })
+
+    app.put('/wishlist', async(req, res) => {
+      const filter = { findingKey: req.body.findingKey };
+      const updatedDoc = {
+        $set: req.body
+      }
+      const options = { upsert: true};
+      const result = await wishlist.updateOne(filter, updatedDoc, options);
       res.send(result);
     })
 
