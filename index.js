@@ -111,6 +111,12 @@ async function run() {
       res.send(result);
     })
 
+    app.delete('/reviews', async(req, res) => {
+      const query = { _id: new ObjectId(req.body.id)};
+      const result = await reviews.deleteOne(query);
+      res.send(result);
+    })
+
   // Send a ping to confirm a successful connection
   await client.db("admin").command({ ping: 1 });
   console.log("Pinged your deployment. You successfully connected to MongoDB!");
