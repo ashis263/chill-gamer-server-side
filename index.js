@@ -92,6 +92,25 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
+
+    app.patch('/reviews', async(req, res) => {
+      const reviewFilter = { _id: new ObjectId(req.body._id)};
+      const watchlistFilter = { findingKey: req.body.findingKey }
+      const updatedDoc = {
+        $set: {
+          cover: req.body.cover,
+            title: req.body.title,
+            review: req.body.review,
+            year: req.body.year,
+            genre: req.body.genre,
+            rating: req.body.rating,
+        }
+      };
+      const result = await reviews.updateOne(reviewFilter, updatedDoc);
+      const wishlistResult = await watchlist.updateMany(watchlistFilter, updatedDoc);
+      res.send(result);
+    })
+
   // Send a ping to confirm a successful connection
   await client.db("admin").command({ ping: 1 });
   console.log("Pinged your deployment. You successfully connected to MongoDB!");
