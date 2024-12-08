@@ -49,6 +49,18 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
+    
+    app.get('/users', async (req, res) => {
+      const cursor = users.find();
+      const result = await cursor.toArray();
+      res.send({totalUsers: result.length});
+    })
+    
+    app.get('/watchlist/all', async (req, res) => {
+      const cursor = watchlist.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
 
     app.get('/review/:id', async(req, res) => {
       const id = req.params.id;
