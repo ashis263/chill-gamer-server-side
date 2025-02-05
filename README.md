@@ -1,20 +1,86 @@
-# Project: Chill Gamer
-Chill Gamer is a responsive single page application for reviewing games. This project was developed using mongoDB, reactJS, expressJS and node. In this web application users can see other users reviews of games. They can also add and update reviews by register and log in to application. This repository is the backend of the project.
 
-## Key features of this project
--  Users can see other user's added reviews while browsing the application, they can see highly rated games, recently reviewed games on the homepage.
+<h1>🎯 Chill Gamer Server</h1>
 
--  Users need to register or log in to their account to explore the other features of the application. The authentication system was developed using the google firebase authentication system. 
+<p><strong>A game review platform</strong> built with the <strong>MERN stack</strong>, allowing users to browse, review, and manage game reviews. The backend is powered by <strong>Node.js, Express.js, and MongoDB</strong>, with secure authentication via <strong>Firebase</strong> and API protection using <strong>JWT</strong>.</p>
 
--  After successful registration user will be logged in and user data except the password will be saved on the mongodb database. For previously registered users, after login the login timestamp will be saved to database. From navbar user can easily logout from the application. Logged on users can see their photo on the right side of the navbar. On hovering that photo, the user's name will be shown on a tooltip.
+<h2>🚀 Technologies Used</h2>
+<p>
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white">
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white">
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black">
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+</p>
+<hr>
 
--  Logged in users will be add new reviews from the add review page by navigating by clicking the navlink. After successfully adding, they will be redirected to my reviews page, where they can see, update and delete the reviews added by them. Clicking the edit button/pen will open a modal which will allow user to update that review. Clicking on delete icon will open a confirmation modal, if confirmed the review will be deleted. On adding, updating and deleting data will be updated on the database.
+<h2>✨ Core Features</h2>
+<ul>
+  <li>✅ <strong>Game Reviews</strong>: Users can browse, add, update, and delete reviews.</li>
+  <li>✅ <strong>Authentication</strong>: Firebase handles secure login and registration.</li>
+  <li>✅ <strong>User Dashboard</strong>:
+    <ul>
+      <li>Users can manage their submitted reviews.</li>
+      <li>Users can add games to their watchlist.</li>
+    </ul>
+  </li>
+  <li>✅ <strong>Dark/Light Mode</strong>: Toggle between themes for a better user experience.</li>
+  <li>✅ <strong>JWT Security</strong>: Secure API authentication with JSON Web Token (JWT).</li>
+</ul>
+<hr>
 
-- Every user can browse all reviews page. From that page when they navigates to the reviewdetails page, if the user is logged in then he/she can add that review to his/her watchlist. They can see all the reviews they watchlisted from the my watchlist page. 
+<h2>📦 Dependencies</h2>
+<ul>
+  <li><strong>Frontend:</strong>
+    <ul>
+      <li>react (^18.3.1)</li>
+      <li>react-router-dom (^6.28.1)</li>
+      <li>react-icons (^5.4.0)</li>
+      <li>sweetalert2 (^11.15.10)</li>
+      <li>axios (^1.7.9)</li>
+    </ul>
+  </li>
+  <li><strong>Backend:</strong>
+    <ul>
+      <li>express (^4.21.2)</li>
+      <li>mongodb (^6.12.0)</li>
+      <li>cors (^2.8.5)</li>
+      <li>dotenv (^16.4.7)</li>
+    </ul>
+  </li>
+</ul>
+<p><em>(Full dependencies list available in <code>package.json</code>.)</em></p>
+<hr>
 
-- User can toggle between dark and light theme by clicking on the sun/moon icon on navbar.
+<h2>🛠️ Installation & Running Locally</h2>
+<p>Follow these steps to set up <strong>Chill Gamer</strong> on your local machine:</p>
 
-## Live Links for this project
-- [On Firebase](https://chill-gamer-7df90.web.app/)
-- [On Netlify](https://chill-gamer-ashis263.netlify.app/)
-- [On Surge](https://chill-gamer-ashis263.surge.sh/)
+<h3>1️⃣ Clone the Repository</h3>
+<pre><code>git clone https://github.com/ashis263/chill-gamer-server-side.git
+cd chill-gamer</code></pre>
+
+<h3>2️⃣ Install Dependencies</h3>
+<pre><code>npm install</code></pre>
+
+<h3>3️⃣ Set Up Environment Variables</h3>
+<p>Create a <code>.env</code> file and add the following:</p>
+<pre><code>PORT=5000
+MONGO_URI=YOUR_MONGODB_CONNECTION_STRING
+JWT_SECRET=YOUR_SECRET_KEY</code></pre>
+<p><em>(Replace with your actual credentials.)</em></p>
+
+<h3>4️⃣ Start the Development Server</h3>
+<pre><code>npm start</code></pre>
+<p>The backend will run at <code>http://localhost:5000/</code> by default.</p>
+<hr>
+
+<h2>🌐 Live Demo</h2>
+<ul>
+  <li>🚀 <a href="https://chill-gamer-7df90.web.app/">Firebase Deployment</a></li>
+  <li>🚀 <a href="https://chill-gamer-ashis263.netlify.app/">Netlify Deployment</a></li>
+  <li>🚀 <a href="https://chill-gamer-ashis263.surge.sh/">Surge Deployment</a></li>
+</ul>
+<hr>
+
+<h2>🤝 Contribution</h2>
+<p>Feel free to fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you’d like to improve.</p>
